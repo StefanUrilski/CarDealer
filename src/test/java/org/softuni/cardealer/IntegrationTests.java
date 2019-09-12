@@ -61,16 +61,11 @@ public class IntegrationTests {
     @Test
     @WithMockUser("spring")
     public void test3() throws Exception {
-        AddSupplierBindingModel model = new AddSupplierBindingModel() {{
-            setName("Megaparts");
-            setIsImporter(true);
-        }};
-
         this.mockMvc
                 .perform(post("/suppliers/add")
                         .param("name", "Megaparts")
                         .param("isImporter", "on"));
 
-        Assert.assertTrue(this.supplierRepository.count() == 1);
+        Assert.assertEquals(1, this.supplierRepository.count());
     }
 }
